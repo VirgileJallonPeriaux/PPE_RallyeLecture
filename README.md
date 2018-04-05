@@ -1,7 +1,8 @@
 # Rallye Lecture
-### Travail réalisé en PPE, 2ème année de BTS SIO
+#### Travail réalisé en PPE, 2ème année de BTS SIO
 
 ## Le contexte du Rallye Lecture
+
 
 ## Code Igniter
 Pour réaliser le site du Rallye Lecture, nous utiliserons le framework **CodeIgniter**.
