@@ -1,8 +1,8 @@
 # Rallye Lecture
 ### Travail réalisé en PPE, 2ème année de BTS SIO
 
-
 ## Le contexte du Rallye Lecture
+
 
 ## Code Igniter
 Pour réaliser le site du Rallye Lecture, nous utiliserons le framework **CodeIgniter**.
@@ -24,3 +24,12 @@ Au delà de ces fonctionnalités assez simples, la bibliothèque propose aussi d
 Le bon fonctionnement de cette bibliothèque nécessite la création de tables supplémentaires dans la base de données du projet RallyeLecture.
 L'execution du script (SQL) de création, fourni avec la bibliothèque, crée les tables suivantes :<br>
 ![diagrammeBDD_2](https://github.com/VirgileJallonPeriaux/PPE_RallyeLecture/blob/master/CapturesEcran/wkbRallyeLecture_2.PNG)
+
+
+## L'état initial du Rallye Lecture
+Le code du Rallye Lecture nous a été remis dans son état initial.<br>
+Il a alors fallu le faire évoluer :
+* Ajout de la pagination
+* Modification du nombre de livres par pages (10 livres maximum)
+* Upload d'un fichier
+* Mise en place d'une barre de recherche pour les livres
