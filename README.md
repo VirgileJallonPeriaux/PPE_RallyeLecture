@@ -1,5 +1,5 @@
 # Rallye Lecture
-### Travail réalisé en PPE, 2ème année BTS SIO
+### Travail réalisé en PPE, 2ème année de BTS SIO
 
 
 ## Le contexte du Rallye Lecture
