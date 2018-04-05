@@ -5,10 +5,13 @@
 ## Le contexte du Rallye Lecture
 
 ## Code Igniter
-
+Pour réaliser le site du Rallye Lecture, nous utiliserons le framework **CodeIgniter**.
+Celui-ci propose au programmeur une bibliothèque de classes permettant la programmation sous PHP.
+Si CodeIgniter simplifie la programmation en PHP, celui-ci impose toutefois une structure dans le développement.
+Il faudra alors utiliser le patron de conception Modèle Vue Contrôleur (MCD).
 
 ## La base de données
-Le projet nécessite le stockage de nombreuses informations (livres, auteurs, utilisateurs...).
+Le projet nécessite le stockage de nombreuses informations (livres, auteurs, élèves, enseignants...).
 Pour réaliser la base de données, nous utiliserons le SGBDR MySQL. Celle-ci sera accessible en localhost.
 La base de données s'organise comme ceci :<br>
 ![diagrammeBDD_1](https://github.com/VirgileJallonPeriaux/PPE_RallyeLecture/blob/master/CapturesEcran/wkbRallyeLecture.PNG)
