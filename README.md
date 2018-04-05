@@ -3,7 +3,6 @@
 
 ## Le contexte du Rallye Lecture
 
-
 ## Code Igniter
 Pour réaliser le site du Rallye Lecture, nous utiliserons le framework **CodeIgniter**.
 Celui-ci propose au programmeur une bibliothèque de classes permettant la programmation sous PHP.
@@ -28,8 +27,9 @@ L'execution du script (SQL) de création, fourni avec la bibliothèque, crée le
 
 ## L'état initial du Rallye Lecture
 Le code du Rallye Lecture nous a été remis dans son état initial.<br>
-Il a alors fallu le faire évoluer :
+Le but est de mettre en place des évolutions :
 * Ajout de la pagination
 * Modification du nombre de livres par pages (10 livres maximum)
 * Upload d'un fichier
 * Mise en place d'une barre de recherche pour les livres
+* Création d'un utilisateur
