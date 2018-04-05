@@ -4,8 +4,13 @@
 
 ## Le contexte du Rallye Lecture
 
+## Code Igniter
 
 
+## La base de données
+Le projet nécessite le stockage de nombreuses informations (livres, auteurs, utilisateurs...).
+Pour réaliser la base de données, nous utiliserons le SGBDR MySQL. Celle-ci sera accessible en localhost.
+La base de données s'organise comme ceci :<br>
 ![diagrammeBDD_1](https://github.com/VirgileJallonPeriaux/PPE_RallyeLecture/blob/master/CapturesEcran/wkbRallyeLecture.PNG)
 
 
