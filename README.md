@@ -27,8 +27,7 @@ L'execution du script (SQL) de création, fourni avec la bibliothèque, crée le
 
 
 ## L'état initial du Rallye Lecture
-Le code du Rallye Lecture nous a été remis dans son état initial.<br>
-Le but est de mettre en place des évolutions :
+Le code du Rallye Lecture nous a été remis dans son état initial.  Le but est de mettre en place des évolutions :
 * Ajout de la pagination
 * Modification du nombre de livres par pages (10 livres maximum)
 * Upload d'un fichier
