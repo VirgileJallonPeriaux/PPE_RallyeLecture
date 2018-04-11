@@ -25,8 +25,42 @@ class LivreModel extends CI_Model {
     }
 
     function get_livre($id) {
-        return $this->db->get_where('livre',array('id'=>$id))->row_array();
+        $retour = $this->db->get_where('livre',array('id'=>$id))->row_array();
+        $this->_count = count($retour);
+        return $retour;
     }
+    
+    function get_livre_nom($nom) {
+        $this->db->select('*');
+        $this->db->from('livre');
+        $this->db->like('titre', $nom , 'after');
+        $retour = $this->db->get()->result_array();
+        $this->_count = count($retour);
+        return $retour;
+    }
+    
+    /*function get_livre_nom($nom , $start = NULL, $count = NULL) {
+        
+        if( isset($start) && isset($count) )
+        {
+            $this->db->select('*');
+            $this->db->from('livre');
+            $this->db->like('titre', $nom , 'after');
+            $this->db->limit($start , $count);
+            $retour = $this->db->get()->result_array();
+            $this->_count = count($retour);
+        }
+        else
+        {
+            $this->db->select('*');
+            $this->db->from('livre');
+            $this->db->like('titre', $nom , 'after');
+            $retour = $this->db->get()->result_array();
+            $this->_count = count($retour);
+        }
+               
+        return $retour;
+    }*/
 
 
 

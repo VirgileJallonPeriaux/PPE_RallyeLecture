@@ -7,7 +7,7 @@ class EnseignantModel extends CI_Model {
     public $ValidationRules=array(
         array('field'=>'nom','label'=>'Nom','rules'=>'required|max_length[45]'),
         array('field'=>'prenom','label'=>'Prenom','rules'=>'required|max_length[45]'),
-        array('field'=>'login','label'=>'Login','rules'=>'required|max_length[100]')
+        array('field'=>'login','label'=>'Login','rules'=>'required|max_length[100]|valid_email')
     );
 
     function __construct() {

@@ -34,7 +34,13 @@ class Menu extends CI_Model {
                     array('','','#'),
                     array('Login','Index','Login'),
                     array('Logout','Index','Logout'),
-                    array('PhpInfo','Index','PhpInfo')
+                    array('PhpInfo','Index','PhpInfo'),
+                    
+                    //
+                    
+                    // array('Recherche','Index','Recherche')
+                     
+                     
                 );
             case 'Enseignant':
                 return array(
