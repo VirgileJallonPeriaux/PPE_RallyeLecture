@@ -120,5 +120,13 @@ class Login extends CI_Controller {
         }
         return $user;
     }
+    
+    public function account()
+    {
+     $this->load->view("AccountCreate");
+    }
+    // this load view 
 
 }
+
+

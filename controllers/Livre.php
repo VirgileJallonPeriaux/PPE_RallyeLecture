@@ -12,8 +12,8 @@ class Livre extends CI_Controller {
         
         
         // ----- Modifs pour UPLOAD d'images ----- \\
-        $config['upload_path']='./images/';
-        $config['allowed_types']='gif|jpg|png';
+        $config['upload_path']='./img/.';
+        $config['allowed_types']='gif|jpg|png|jpeg';
         $config['overwrite']=TRUE;
         $config['max_size']='2000';
         $config['max_width']='1024';
@@ -30,46 +30,67 @@ class Livre extends CI_Controller {
     }
 
     function index() {
-        
-        
-        // ----- modif --- \\
         $config['base_url']=site_url().'/Livre/index/page';
         $page = $this->uri->segment(4,0);
-        $config['total_rows'] = $this->livreModel->get_count();
+        // $config['total_rows'] = $this->livreModel->get_count();
         $config['per_page'] = 10;
         $config['uri_segment'] = 4;
-        $config['total_rows'] = 132;    // nombre de libres dans la BDD
         $config['num_links'] = 15;
         $config['num_tag_open'] = ' ';
         $config['num_tag_close'] = ' ';
         
-        $this->pagination->initialize($config);
-        $data['livres'] = $this->livreModel->get_all_livres($page,$config['per_page']);
-        $links = $this->pagination->create_links();
-        // ----- \\
-        // $data['livres']=$this->livreModel->get_all_livres();
-        // $data['title']='Les Livres';
-        // $this->load->view('AppHeader',$data);
-        // $this->load->view('LivreIndex',$data);
-        // $this->load->view('AppFooter',$data);
         
+        $data['livres'] = $this->livreModel->get_all_livres($page,$config['per_page']);
+        
+        
+        $config['total_rows'] = $this->livreModel->get_count();    // nombre de livres dans la BDD
+        $this->pagination->initialize($config);
+        $links = $this->pagination->create_links();
         $data['title']='Les Livres';
         $data['links']=$links;
+        $data['nombreLivres']=$this->livreModel->get_count();
+        $this->load->view('AppHeader',$data);
+        $this->load->view('LivreIndex',$data);
+        $this->load->view('AppFooter',$data);          
+    }
+            
+    function indexRechercheNom() {
+        $config['base_url']=site_url().'/Livre/index/page';
+        // $page = $this->uri->segment(4,0);
+        $config['per_page'] = 10;
+        $config['uri_segment'] = 4;
+        $config['num_links'] = 15;
+        $config['num_tag_open'] = ' ';
+        $config['num_tag_close'] = ' ';
         
+        
+        $nom = $this->input->post("nom");
+        $data['titre'] = $nom;
+        $data['livres'] = $this->livreModel->get_livre_nom($nom);
+        
+        
+        $config['total_rows'] = $this->livreModel->get_count();    // nombre de livres dans la BDD
+        $this->pagination->initialize($config);
+        $links = $this->pagination->create_links();
+        $data['title']='Les Livres';
+        $data['links']=$links;
+        $data['nombreLivres'] = $this->livreModel->get_count();
         $this->load->view('AppHeader',$data);
         $this->load->view('LivreIndex',$data);
         $this->load->view('AppFooter',$data);        
     }
-
+    
     function upload_image()
     {
         if(!$this->upload->do_upload('couverture'))
         {
-           $error = TRUE;
+           // $error = TRUE;
+            $error = $this->upload->display_errors();
         }
         else
         {
-            $error = FALSE;
+            // $error = FALSE;
+            $error = null;
         }
         return $error;
     }
@@ -77,28 +98,28 @@ class Livre extends CI_Controller {
     function add() {
         
         // ##### \\
-        //$this->upload_image();
-        //echo "name".$this->upload->file_name;
+        // $this->upload_image();
+        // echo "name".$this->upload->file_name;
         // ##### \\
         
         $this->load->library('form_validation');
         LoadValidationRules($this->livreModel,$this->form_validation);
+        $this->form_validation->set_rules('couverture', 'Couverture', 'callback_upload_image');    
+        
         if ($this->form_validation->run())
         {
             
-            // $this->upload_image();
-            // echo "name".$this->upload->file_name;
-            
-            
-            $params=array(
-                'titre'=>$this->input->post('titre'),
-                'couverture'=>$this->input->post('couverture'),
-                'idAuteur'=>$this->input->post('idAuteur'),
-                'idEditeur'=>$this->input->post('idEditeur'),
-                'idQuizz'=>$this->input->post('idQuizz'),
-            );
-
-            $livre_id=$this->livreModel->add_livre($params);
+            $this->upload_image();
+                $params=array(
+                    'titre'=>$this->input->post('titre'),
+                    // 'couverture'=>$this->input->post('couverture'),
+                    'couverture'=>$this->upload->file_name,
+                    //
+                    'idAuteur'=>$this->input->post('idAuteur'),
+                    'idEditeur'=>$this->input->post('idEditeur'),
+                    'idQuizz'=>$this->input->post('idQuizz'),
+                );
+                $livre_id=$this->livreModel->add_livre($params);
             redirect('Livre/Index');
         }
         else
@@ -146,7 +167,7 @@ class Livre extends CI_Controller {
             );
             $this->load->library('ComboBox',$cbProperties,'cbQuizz');
             $data['comboBoxQuizz']=$this->cbQuizz;// fin chargement comboBoxQuizz
-            //
+            // todo : gérer création d'un nouveau livre (image etc)
             $data['title']="Création d'un livre";
             $this->load->view('AppHeader',$data);
             $this->load->view('LivreAdd',$data);
@@ -235,4 +256,8 @@ class Livre extends CI_Controller {
             show_error("Le livre que vous tentez de supprimer n'existe pas.");
     }
 
+    function supprimer($ids)
+    {
+        $this->load->view('LivreSuppression',$ids);
+    }
 }
